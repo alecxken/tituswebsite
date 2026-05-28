@@ -27,40 +27,50 @@ function getDB() {
     return $pdo;
 }
 
-function getSetting($key, $default = '') {
-    $pdo = getDB();
-    if (!$pdo) { return $default; }
-    $stmt = $pdo->prepare('SELECT value FROM settings WHERE setting_key = ? LIMIT 1');
-    $stmt->execute(array($key));
-    $val = $stmt->fetchColumn();
-    return $val !== false ? $val : $default;
-}
-
 function getServices($pdo) {
     if (!$pdo) { return array(); }
-    return $pdo->query('SELECT * FROM services WHERE active=1 ORDER BY sort_order,id')->fetchAll();
+    try {
+        return $pdo->query('SELECT * FROM services WHERE active=1 ORDER BY sort_order,id')->fetchAll();
+    } catch (Exception $e) { return array(); }
 }
 
 function getTestimonials($pdo) {
     if (!$pdo) { return array(); }
-    return $pdo->query('SELECT * FROM testimonials WHERE active=1 ORDER BY sort_order,id')->fetchAll();
+    try {
+        return $pdo->query('SELECT * FROM testimonials WHERE active=1 ORDER BY sort_order,id')->fetchAll();
+    } catch (Exception $e) { return array(); }
 }
 
 function getListings($pdo, $featuredOnly = false, $limit = 6) {
     if (!$pdo) { return array(); }
-    $where = $featuredOnly ? 'WHERE featured=1' : '';
-    $stmt  = $pdo->prepare("SELECT * FROM listings $where ORDER BY sort_order,id LIMIT ?");
-    $stmt->execute(array($limit));
-    return $stmt->fetchAll();
+    try {
+        $where = $featuredOnly ? 'WHERE featured=1' : '';
+        $stmt  = $pdo->prepare("SELECT * FROM listings $where ORDER BY sort_order,id LIMIT ?");
+        $stmt->execute(array($limit));
+        return $stmt->fetchAll();
+    } catch (Exception $e) { return array(); }
 }
 
 function getGallery($pdo, $category = '') {
     if (!$pdo) { return array(); }
-    if ($category) {
-        $stmt = $pdo->prepare('SELECT * FROM gallery WHERE active=1 AND category=? ORDER BY sort_order,id');
-        $stmt->execute(array($category));
-    } else {
-        $stmt = $pdo->query('SELECT * FROM gallery WHERE active=1 ORDER BY sort_order,id');
-    }
-    return $stmt->fetchAll();
+    try {
+        if ($category) {
+            $stmt = $pdo->prepare('SELECT * FROM gallery WHERE active=1 AND category=? ORDER BY sort_order,id');
+            $stmt->execute(array($category));
+        } else {
+            $stmt = $pdo->query('SELECT * FROM gallery WHERE active=1 ORDER BY sort_order,id');
+        }
+        return $stmt->fetchAll();
+    } catch (Exception $e) { return array(); }
+}
+
+function getSetting($key, $default = '') {
+    $pdo = getDB();
+    if (!$pdo) { return $default; }
+    try {
+        $stmt = $pdo->prepare('SELECT value FROM settings WHERE setting_key = ? LIMIT 1');
+        $stmt->execute(array($key));
+        $val = $stmt->fetchColumn();
+        return $val !== false ? $val : $default;
+    } catch (Exception $e) { return $default; }
 }
