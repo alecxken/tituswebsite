@@ -8,7 +8,7 @@ $current_page = 'home';
 require_once 'config/database.php';
 $pdo = getDB();
 
-define('TITO_IMG_DEFAULT', TITO_IMG_DEFAULT);
+define('TITO_IMG_DEFAULT', 'assets/images/tito/custom1.jpg');
 
 $db_services     = getServices($pdo);
 $db_testimonials = getTestimonials($pdo);
