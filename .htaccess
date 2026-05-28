@@ -1,0 +1,38 @@
+# cPanel / Apache configuration for Titus Tuitoek Buyers Agent website
+
+# Serve index.php as the default document
+DirectoryIndex index.php index.html
+
+# Force HTTPS (enable once SSL is set up on cPanel)
+# RewriteEngine On
+# RewriteCond %{HTTPS} off
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Optional: redirect old .html pages to new .php equivalents
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+
+    # Redirect legacy .html pages to .php
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^about\.html$   about.php   [R=301,L]
+    RewriteRule ^service\.html$ service.php [R=301,L]
+    RewriteRule ^contact\.html$ contact.php [R=301,L]
+    RewriteRule ^index\.html$   index.php   [R=301,L]
+</IfModule>
+
+# Security headers
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# Prevent directory listing
+Options -Indexes
+
+# Protect sensitive files
+<FilesMatch "\.(json|log|md|sh|env)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>

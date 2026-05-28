@@ -1,0 +1,20 @@
+# Logs and temp files
+error_log
+*.log
+*.tmp
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Old / unused template files (kept locally, not deployed)
+Inventarc/
+admin.html
+index1.html
+content-editor.js
+content-loader.js
+content.json
+header-content.json
+sections-content.json
+site-content.json
+cgi-bin/
