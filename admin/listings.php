@@ -66,7 +66,9 @@ if (($action === 'edit') && $id) {
     $row = $s->fetch();
 }
 
-$admin_title = match($action) { 'add'=>'Add Listing','edit'=>'Edit Listing',default=>'Listings' };
+if ($action === 'add')       { $admin_title = 'Add Listing'; }
+elseif ($action === 'edit') { $admin_title = 'Edit Listing'; }
+else                        { $admin_title = 'Listings'; }
 require_once 'includes/header.php';
 ?>
 
@@ -117,68 +119,68 @@ require_once 'includes/header.php';
 
             <div class="row">
                 <div class="col-md-8 form-group">
-                    <label>Property Title *</label>
-                    <input type="text" name="title" value="<?php echo htmlspecialchars($row['title'] ?? ''); ?>" required placeholder="e.g. Modern Family Home in Scarborough">
+                    <label for="lst_title">Property Title *</label>
+                    <input id="lst_title" type="text" name="title" value="<?php echo htmlspecialchars($row['title'] ?? ''); ?>" required placeholder="e.g. Modern Family Home in Scarborough">
                 </div>
                 <div class="col-md-4 form-group">
-                    <label>Suburb</label>
-                    <input type="text" name="suburb" value="<?php echo htmlspecialchars($row['suburb'] ?? ''); ?>" placeholder="e.g. Scarborough">
+                    <label for="lst_suburb">Suburb</label>
+                    <input id="lst_suburb" type="text" name="suburb" value="<?php echo htmlspecialchars($row['suburb'] ?? ''); ?>" placeholder="e.g. Scarborough">
                 </div>
             </div>
             <div class="form-group">
-                <label>Address</label>
-                <input type="text" name="address" value="<?php echo htmlspecialchars($row['address'] ?? ''); ?>" placeholder="Street address (optional)">
+                <label for="lst_address">Address</label>
+                <input id="lst_address" type="text" name="address" value="<?php echo htmlspecialchars($row['address'] ?? ''); ?>" placeholder="Street address (optional)">
             </div>
             <div class="row">
                 <div class="col-md-3 form-group">
-                    <label>Price</label>
-                    <input type="text" name="price" value="<?php echo htmlspecialchars($row['price'] ?? ''); ?>" placeholder="$850,000">
+                    <label for="lst_price">Price</label>
+                    <input id="lst_price" type="text" name="price" value="<?php echo htmlspecialchars($row['price'] ?? ''); ?>" placeholder="$850,000">
                 </div>
                 <div class="col-md-3 form-group">
-                    <label>Bedrooms</label>
-                    <input type="number" name="bedrooms" value="<?php echo (int)($row['bedrooms'] ?? 0); ?>" min="0">
+                    <label for="lst_bedrooms">Bedrooms</label>
+                    <input id="lst_bedrooms" type="number" name="bedrooms" value="<?php echo (int)($row['bedrooms'] ?? 0); ?>" min="0">
                 </div>
                 <div class="col-md-3 form-group">
-                    <label>Bathrooms</label>
-                    <input type="number" name="bathrooms" value="<?php echo (int)($row['bathrooms'] ?? 0); ?>" min="0">
+                    <label for="lst_bathrooms">Bathrooms</label>
+                    <input id="lst_bathrooms" type="number" name="bathrooms" value="<?php echo (int)($row['bathrooms'] ?? 0); ?>" min="0">
                 </div>
                 <div class="col-md-3 form-group">
-                    <label>Car Spaces</label>
-                    <input type="number" name="car_spaces" value="<?php echo (int)($row['car_spaces'] ?? 0); ?>" min="0">
+                    <label for="lst_car">Car Spaces</label>
+                    <input id="lst_car" type="number" name="car_spaces" value="<?php echo (int)($row['car_spaces'] ?? 0); ?>" min="0">
                 </div>
             </div>
             <div class="form-group">
-                <label>Description</label>
-                <textarea name="description" rows="4" placeholder="Property details..."><?php echo htmlspecialchars($row['description'] ?? ''); ?></textarea>
+                <label for="lst_desc">Description</label>
+                <textarea id="lst_desc" name="description" rows="4" placeholder="Property details..."><?php echo htmlspecialchars($row['description'] ?? ''); ?></textarea>
             </div>
             <div class="row">
                 <div class="col-md-4 form-group">
-                    <label>Status</label>
-                    <select name="status">
-                        <?php foreach (['available'=>'Available','sold'=>'Sold','under_offer'=>'Under Offer'] as $v=>$l): ?>
+                    <label for="lst_status">Status</label>
+                    <select id="lst_status" name="status">
+                        <?php foreach (array('available'=>'Available','sold'=>'Sold','under_offer'=>'Under Offer') as $v=>$l): ?>
                         <option value="<?php echo $v; ?>" <?php echo ($row['status'] ?? 'available')===$v?'selected':''; ?>><?php echo $l; ?></option>
                         <?php endforeach; ?>
                     </select>
                 </div>
                 <div class="col-md-4 form-group">
-                    <label>Sort Order</label>
-                    <input type="number" name="sort_order" value="<?php echo (int)($row['sort_order'] ?? 0); ?>" min="0">
+                    <label for="lst_order">Sort Order</label>
+                    <input id="lst_order" type="number" name="sort_order" value="<?php echo (int)($row['sort_order'] ?? 0); ?>" min="0">
                 </div>
                 <div class="col-md-4 form-group" style="display:flex;align-items:flex-end;padding-bottom:20px;">
-                    <label style="display:flex;align-items:center;gap:10px;cursor:pointer;">
-                        <input type="checkbox" name="featured" <?php echo ($row['featured'] ?? 0)?'checked':''; ?> style="width:18px;height:18px;">
+                    <label for="lst_featured" style="display:flex;align-items:center;gap:10px;cursor:pointer;">
+                        <input id="lst_featured" type="checkbox" name="featured" <?php echo ($row['featured'] ?? 0)?'checked':''; ?> style="width:18px;height:18px;">
                         Feature on homepage
                     </label>
                 </div>
             </div>
             <div class="form-group">
-                <label>Property Photo (max 5MB — JPG/PNG/WebP)</label>
+                <label for="lst_image">Property Photo (max 5MB — JPG/PNG/WebP)</label>
                 <?php if (!empty($row['image'])): ?>
                 <div style="margin-bottom:10px;">
-                    <img src="../<?php echo htmlspecialchars($row['image']); ?>" class="img-preview" alt="">
+                    <img src="../<?php echo htmlspecialchars($row['image']); ?>" class="img-preview" alt="Current uploaded file">
                 </div>
                 <?php endif; ?>
-                <input type="file" name="image" accept="image/jpeg,image/png,image/webp" style="padding:8px;border:1.5px dashed #dde8ed;border-radius:8px;width:100%;">
+                <input id="lst_image" type="file" name="image" accept="image/jpeg,image/png,image/webp" style="padding:8px;border:1.5px dashed #dde8ed;border-radius:8px;width:100%;">
             </div>
             <button type="submit" class="btn-save"><i class="fas fa-save"></i> Save Listing</button>
         </form>

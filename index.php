@@ -1,4 +1,8 @@
 <?php
+/* Temporary: show PHP errors so 500 shows its cause — remove after fix confirmed */
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
+
 $page_title   = 'Titus Tuitoek — Perth\'s Premier Property Buyers Advocate';
 $current_page = 'home';
 require_once 'config/database.php';

@@ -56,7 +56,9 @@ if ($action === 'edit' && $id) {
     $row = $s->fetch();
 }
 
-$admin_title = match($action) {'add'=>'Add Testimonial','edit'=>'Edit Testimonial',default=>'Testimonials'};
+if ($action === 'add')       { $admin_title = 'Add Testimonial'; }
+elseif ($action === 'edit') { $admin_title = 'Edit Testimonial'; }
+else                        { $admin_title = 'Testimonials'; }
 require_once 'includes/header.php';
 ?>
 
@@ -114,44 +116,44 @@ require_once 'includes/header.php';
 
             <div class="row">
                 <div class="col-md-6 form-group">
-                    <label>Client Name *</label>
-                    <input type="text" name="name" value="<?php echo htmlspecialchars($row['name'] ?? ''); ?>" required placeholder="Sarah & James Wilson">
+                    <label for="tst_name">Client Name *</label>
+                    <input id="tst_name" type="text" name="name" value="<?php echo htmlspecialchars($row['name'] ?? ''); ?>" required placeholder="Sarah & James Wilson">
                 </div>
                 <div class="col-md-6 form-group">
-                    <label>Role / Location</label>
-                    <input type="text" name="role" value="<?php echo htmlspecialchars($row['role'] ?? ''); ?>" placeholder="First Home Buyers, Scarborough">
+                    <label for="tst_role">Role / Location</label>
+                    <input id="tst_role" type="text" name="role" value="<?php echo htmlspecialchars($row['role'] ?? ''); ?>" placeholder="First Home Buyers, Scarborough">
                 </div>
             </div>
             <div class="form-group">
-                <label>Testimonial Text *</label>
-                <textarea name="text" rows="5" required placeholder="What the client said..."><?php echo htmlspecialchars($row['text'] ?? ''); ?></textarea>
+                <label for="tst_text">Testimonial Text *</label>
+                <textarea id="tst_text" name="text" rows="5" required placeholder="What the client said..."><?php echo htmlspecialchars($row['text'] ?? ''); ?></textarea>
             </div>
             <div class="row">
                 <div class="col-md-4 form-group">
-                    <label>Star Rating</label>
-                    <select name="rating">
+                    <label for="tst_rating">Star Rating</label>
+                    <select id="tst_rating" name="rating">
                         <?php for ($i=5; $i>=1; $i--): ?>
                         <option value="<?php echo $i; ?>" <?php echo ($row['rating']??5)==$i?'selected':''; ?>><?php echo str_repeat('★',$i); ?></option>
                         <?php endfor; ?>
                     </select>
                 </div>
                 <div class="col-md-4 form-group">
-                    <label>Sort Order</label>
-                    <input type="number" name="sort_order" value="<?php echo (int)($row['sort_order']??0); ?>" min="0">
+                    <label for="tst_order">Sort Order</label>
+                    <input id="tst_order" type="number" name="sort_order" value="<?php echo (int)($row['sort_order']??0); ?>" min="0">
                 </div>
             </div>
             <div class="form-group">
-                <label>Client Photo (optional, max 2MB)</label>
+                <label for="tst_photo">Client (optional, max 2MB)</label>
                 <?php if (!empty($row['photo'])): ?>
                 <div style="margin-bottom:10px;">
                     <img src="../<?php echo htmlspecialchars($row['photo']); ?>" style="width:60px;height:60px;border-radius:50%;object-fit:cover;" alt="">
                 </div>
                 <?php endif; ?>
-                <input type="file" name="photo" accept="image/jpeg,image/png,image/webp" style="padding:8px;border:1.5px dashed #dde8ed;border-radius:8px;width:100%;">
+                <input id="tst_photo" type="file" name="photo" accept="image/jpeg,image/png,image/webp" style="padding:8px;border:1.5px dashed #dde8ed;border-radius:8px;width:100%;">
             </div>
             <div class="form-group">
-                <label style="display:flex;align-items:center;gap:10px;cursor:pointer;">
-                    <input type="checkbox" name="active" <?php echo ($row['active']??1)?'checked':''; ?> style="width:18px;height:18px;">
+                <label for="tst_active" style="display:flex;align-items:center;gap:10px;cursor:pointer;">
+                    <input id="tst_active" type="checkbox" name="active" <?php echo ($row['active']??1)?'checked':''; ?> style="width:18px;height:18px;">
                     Show on website
                 </label>
             </div>
