@@ -16,7 +16,7 @@ if (!empty($_GET['message'])) {
     }
 }
 
-include 'includes/header.php';
+include_once 'includes/header.php';
 ?>
 
 <!-- page-title -->
@@ -371,5 +371,5 @@ $(document).ready(function(){
 </script>
 JS;
 
-include 'includes/footer.php';
+include_once 'includes/footer.php';
 ?>

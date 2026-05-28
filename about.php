@@ -1,7 +1,7 @@
 <?php
 $page_title   = 'About Titus Tuitoek - Perth Property Buyers Agent';
 $current_page = 'about';
-include 'includes/header.php';
+include_once 'includes/header.php';
 ?>
 
 <!-- Hero -->

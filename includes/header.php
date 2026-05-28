@@ -3,28 +3,28 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-
-    <title><?php echo isset($page_title) ? htmlspecialchars($page_title) : 'Titus Tuitoek - Property Buyers Agent'; ?></title>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><?php echo isset($page_title) ? htmlspecialchars($page_title) : 'Titus Tuitoek — Property Buyers Agent Perth'; ?></title>
     <link rel="icon" href="assets/images/logo-2.png" type="image/x-icon">
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <!-- Quicksand (self-hosted) -->
+    <link href="assets/css/quicksand.css" rel="stylesheet">
 
-    <!-- Stylesheets -->
+    <!-- AOS scroll animations (self-hosted) -->
+    <link href="assets/css/aos.css" rel="stylesheet">
+
+    <!-- Template CSS -->
     <link href="assets/css/font-awesome-all.css" rel="stylesheet">
     <link href="assets/css/flaticon.css" rel="stylesheet">
     <link href="assets/css/owl.css" rel="stylesheet">
     <link href="assets/css/bootstrap.css" rel="stylesheet">
-    <link href="assets/css/jquery.fancybox.min.css" rel="stylesheet">
     <link href="assets/css/animate.css" rel="stylesheet">
-    <link href="assets/css/nice-select.css" rel="stylesheet">
     <link href="assets/css/color.css" rel="stylesheet">
     <link href="assets/css/elpath.css" rel="stylesheet">
     <link href="assets/css/style.css" rel="stylesheet">
     <link href="assets/css/responsive.css" rel="stylesheet">
+
+    <!-- Custom (overrides, new design) -->
     <link href="assets/css/custom.css" rel="stylesheet">
 </head>
 
@@ -42,39 +42,10 @@
                 <div class="animation-preloader">
                     <div class="spinner"></div>
                     <div class="txt-loading">
-                        <?php
-                        $letters = ['t','i','t','u','s','b','u','y','e','r','s'];
-                        $upper   = ['T','I','T','U','S','B','U','Y','E','R','S'];
-                        foreach ($letters as $i => $l):
-                        ?>
-                        <span data-text-preloader="<?php echo $l; ?>" class="letters-loading"><?php echo $upper[$i]; ?></span>
+                        <?php foreach (str_split('TITUSBUYERS') as $l): ?>
+                        <span data-text-preloader="<?php echo strtolower($l); ?>" class="letters-loading"><?php echo $l; ?></span>
                         <?php endforeach; ?>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Search Popup -->
-    <div id="search-popup" class="search-popup">
-        <div class="popup-inner">
-            <div class="upper-box clearfix">
-                <figure class="logo-box pull-left">
-                    <a href="index.php"><img src="assets/images/logo.png" alt="Titus Tuitoek"></a>
-                </figure>
-                <div class="close-search pull-right"><span class="far fa-times"></span></div>
-            </div>
-            <div class="overlay-layer"></div>
-            <div class="auto-container">
-                <div class="search-form">
-                    <form method="get" action="index.php">
-                        <div class="form-group">
-                            <fieldset>
-                                <input type="search" class="form-control" name="s" placeholder="Type your keyword and hit" required>
-                                <button type="submit"><i class="far fa-search"></i></button>
-                            </fieldset>
-                        </div>
-                    </form>
                 </div>
             </div>
         </div>
@@ -100,8 +71,7 @@
                             </div>
                             <div class="content-box">
                                 <h4>About Us</h4>
-                                <p>As Perth's trusted property buyers advocate, we bring over 5 years of market expertise to help you secure your ideal property. Our deep understanding of the Western Australian real estate market ensures you make informed decisions with confidence.</p>
-                                <p>We pride ourselves on providing personalized service, expert negotiation, and thorough due diligence to save you time, money, and stress in your property journey.</p>
+                                <p>Perth's trusted property buyers advocate — over 5 years of market expertise helping clients secure their ideal property below market value.</p>
                                 <a href="about.php" class="theme-btn btn-one">About Us</a>
                             </div>
                             <div class="contact-info">
@@ -138,30 +108,27 @@
                     </div>
                     <div class="menu-area">
                         <div class="mobile-nav-toggler">
-                            <i class="icon-bar"></i>
-                            <i class="icon-bar"></i>
-                            <i class="icon-bar"></i>
+                            <i class="icon-bar"></i><i class="icon-bar"></i><i class="icon-bar"></i>
                         </div>
-                        <nav class="main-menu navbar-expand-md navbar-light">
+                        <nav class="main-menu navbar-expand-md navbar-light" aria-label="Primary navigation">
                             <div class="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
                                 <ul class="navigation clearfix">
                                     <?php
                                     $nav = [
-                                        'home'    => ['label' => 'Home',     'url' => 'index.php'],
-                                        'about'   => ['label' => 'About',    'url' => 'about.php'],
-                                        'service' => ['label' => 'Services', 'url' => 'service.php'],
-                                        'contact' => ['label' => 'Contact',  'url' => 'contact.php'],
+                                        'home'    => ['Home',     'index.php'],
+                                        'about'   => ['About',    'about.php'],
+                                        'service' => ['Services', 'service.php'],
+                                        'contact' => ['Contact',  'contact.php'],
                                     ];
-                                    foreach ($nav as $key => $item):
-                                        $active = (isset($current_page) && $current_page === $key) ? ' class="current"' : '';
+                                    foreach ($nav as $key => [$label, $url]):
+                                        $cls = (isset($current_page) && $current_page === $key) ? ' class="current"' : '';
                                     ?>
-                                    <li<?php echo $active; ?>><a href="<?php echo $item['url']; ?>"><?php echo $item['label']; ?></a></li>
+                                    <li<?php echo $cls; ?>><a href="<?php echo $url; ?>"><?php echo $label; ?></a></li>
                                     <?php endforeach; ?>
                                 </ul>
                             </div>
                         </nav>
                         <div class="menu-right-content">
-                            <div class="search-box-outer search-toggler"><i class="icon-1"></i></div>
                             <div class="nav-btn nav-toggler navSidebar-button"><i class="icon-2"></i></div>
                         </div>
                     </div>
@@ -178,9 +145,8 @@
                     </figure>
                 </div>
                 <div class="menu-area clearfix">
-                    <nav class="main-menu clearfix"><!-- Menu via JavaScript --></nav>
+                    <nav class="main-menu clearfix" aria-label="Sticky navigation"></nav>
                     <div class="menu-right-content">
-                        <div class="search-box-outer search-toggler"><i class="icon-1"></i></div>
                         <div class="nav-btn nav-toggler navSidebar-button"><i class="icon-2"></i></div>
                     </div>
                 </div>
@@ -192,11 +158,11 @@
     <div class="mobile-menu">
         <div class="menu-backdrop"></div>
         <div class="close-btn"><i class="fas fa-times"></i></div>
-        <nav class="menu-box">
+        <nav class="menu-box" aria-label="Mobile navigation">
             <div class="nav-logo">
-                <a href="index.php"><img src="assets/images/logo-2.png" alt="Titus Tuitoek" title=""></a>
+                <a href="index.php"><img src="assets/images/logo-2.png" alt="Titus Tuitoek"></a>
             </div>
-            <div class="menu-outer"><!-- Menu via JavaScript --></div>
+            <div class="menu-outer"></div>
             <div class="contact-info">
                 <h4>Contact Info</h4>
                 <ul>

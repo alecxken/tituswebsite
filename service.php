@@ -1,7 +1,7 @@
 <?php
 $page_title   = 'Titus Tuitoek - Property Buyers Agent Services Perth';
 $current_page = 'service';
-include 'includes/header.php';
+include_once 'includes/header.php';
 ?>
 
 <!-- page-title -->

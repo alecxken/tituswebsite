@@ -7,6 +7,10 @@ deployment:
     - /bin/cp service.php $DEPLOYPATH
     - /bin/cp contact.php $DEPLOYPATH
     - /bin/cp sendemail.php $DEPLOYPATH
+    - /bin/cp setup.php $DEPLOYPATH
     - /bin/cp .htaccess $DEPLOYPATH
     - /bin/cp -R includes $DEPLOYPATH
+    - /bin/cp -R config $DEPLOYPATH
+    - /bin/cp -R admin $DEPLOYPATH
     - /bin/cp -R assets $DEPLOYPATH
+    - /bin/cp -R uploads $DEPLOYPATH
