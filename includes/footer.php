@@ -90,9 +90,44 @@
 
 <?php if (isset($page_scripts)) echo $page_scripts; ?>
 
-<!-- WhatsApp floating button -->
-<a href="https://wa.me/61498439115?text=Hi%20Titus%2C%20I%27m%20interested%20in%20your%20property%20buying%20services%20in%20Perth."
-   class="whatsapp-fab"
+<!-- WhatsApp floating button — z-index: 99999 !important guarantees it floats above all template layers -->
+<style>
+.wa-float{
+  position:fixed!important;bottom:28px!important;right:28px!important;
+  z-index:99999!important;
+  width:58px;height:58px;border-radius:50%;
+  background:#25D366;display:flex!important;
+  align-items:center;justify-content:center;
+  box-shadow:0 6px 24px rgba(37,211,102,.50);
+  transition:transform .2s ease,box-shadow .2s ease;
+  text-decoration:none!important;
+}
+.wa-float:hover{transform:scale(1.1)!important;box-shadow:0 10px 36px rgba(37,211,102,.65)!important}
+.wa-float svg{width:30px;height:30px;fill:#fff;flex-shrink:0}
+.wa-float::before{
+  content:'';position:absolute;inset:-7px;border-radius:50%;
+  border:2px solid rgba(37,211,102,.3);
+  animation:wa-ring 2.4s ease-in-out infinite;
+}
+@keyframes wa-ring{
+  0%,100%{transform:scale(1);opacity:.3}
+  60%{transform:scale(1.22);opacity:0}
+}
+/* Tooltip on hover */
+.wa-float::after{
+  content:'Chat on WhatsApp';
+  position:absolute;right:70px;
+  background:rgba(3,14,31,.95);color:#fff;
+  font-family:'Quicksand',sans-serif;font-size:12px;font-weight:600;
+  padding:7px 14px;border-radius:8px;white-space:nowrap;
+  opacity:0;pointer-events:none;
+  transition:opacity .2s ease;
+  border:1px solid rgba(255,255,255,.08);
+}
+.wa-float:hover::after{opacity:1}
+</style>
+<a href="https://wa.me/61498439115?text=Hi%20Titus%2C%20I%27m%20interested%20in%20your%20Perth%20property%20buying%20services."
+   class="wa-float"
    aria-label="Chat with Titus on WhatsApp"
    target="_blank"
    rel="noopener noreferrer">
