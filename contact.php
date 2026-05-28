@@ -1,5 +1,5 @@
 <?php
-$page_title   = 'Contact Titus Tuitoek - Perth Property Buyers Agent';
+$page_title   = 'Contact Titus Tuitoek — Perth Property Buyers Agent';
 $current_page = 'contact';
 
 /* Show flash message from sendemail.php redirect */
@@ -18,6 +18,95 @@ if (!empty($_GET['message'])) {
 
 include_once 'includes/header.php';
 ?>
+<style>
+/* Contact page — dark theme scoped override */
+body{background:#030e1f!important}
+.boxed_wrapper{background:#030e1f!important}
+.page-title .bg-layer{filter:brightness(.25) saturate(.6)}
+.page-title .title-box h2{color:#fff!important;font-family:'Quicksand',sans-serif!important}
+.page-title .title-box p{color:rgba(255,255,255,.75)!important}
+/* Contact section */
+.contact-page-section{background:#071c35!important;padding:80px 0}
+.contact-page-section .sec-title h2{color:#fff!important}
+.contact-page-section .sec-title h2 span{color:#9aab88!important}
+.contact-page-section .sec-title .sub-title{color:#6B705C!important}
+.contact-page-section .sec-title p{color:rgba(255,255,255,.7)!important}
+/* Tab buttons */
+.tab-btn{
+  background:rgba(255,255,255,.04)!important;
+  border:1px solid rgba(255,255,255,.1)!important;
+  color:rgba(255,255,255,.7)!important;
+  font-family:'Quicksand',sans-serif!important;border-radius:8px!important;
+  transition:all .2s ease!important;cursor:pointer;
+}
+.tab-btn.active,.tab-btn:hover{
+  background:#6B705C!important;border-color:#6B705C!important;
+  color:#fff!important;
+}
+/* Form inputs */
+.contact-page-section input,.contact-page-section textarea,.contact-page-section select{
+  background:rgba(255,255,255,.04)!important;
+  border:1px solid rgba(255,255,255,.1)!important;
+  color:#fff!important;border-radius:8px!important;
+  font-family:'Quicksand',sans-serif!important;
+}
+.contact-page-section input:focus,.contact-page-section textarea:focus,.contact-page-section select:focus{
+  border-color:rgba(107,112,92,.5)!important;outline:none!important;
+}
+.contact-page-section input::placeholder,.contact-page-section textarea::placeholder{
+  color:rgba(255,255,255,.3)!important;
+}
+.contact-page-section .form-group button[type=submit]{
+  background:#6B705C!important;color:#fff!important;
+  border-radius:8px!important;font-family:'Quicksand',sans-serif!important;
+  font-weight:700!important;cursor:pointer;
+  transition:all .2s ease!important;
+}
+.contact-page-section .form-group button[type=submit]:hover{
+  background:#9aab88!important;transform:translateY(-2px)!important;
+}
+/* Info box + hours */
+.info-box{
+  background:rgba(107,112,92,.1)!important;
+  border:1px solid rgba(107,112,92,.25)!important;
+  border-radius:12px!important;
+}
+.info-box h3,.info-box h4,.info-box strong{color:#fff!important}
+.info-box p,.info-box li,.info-box a{color:rgba(255,255,255,.75)!important}
+.info-box a:hover{color:#6B705C!important}
+.service-hours{
+  background:rgba(255,255,255,.03)!important;
+  border:1px solid rgba(255,255,255,.08)!important;
+  border-radius:12px!important;
+}
+.service-hours h3{color:#fff!important}
+.service-hours ul li{color:rgba(255,255,255,.7)!important;border-color:rgba(255,255,255,.08)!important}
+.hours-val,.service-hours ul li span[style*="color:#8FA9B5"],.service-hours ul li span[style*="6B705C"]{
+  color:#6B705C!important;font-weight:700;
+}
+/* Calendar/booking form */
+.calendar-container,.calendar-placeholder{
+  background:rgba(255,255,255,.03)!important;
+  border-radius:12px!important;border:1px solid rgba(255,255,255,.08)!important;
+}
+.calendar-placeholder h3,.calendar-placeholder p{color:#fff!important}
+.calendar-form input,.calendar-form select,.calendar-form textarea{
+  border-radius:8px!important;
+}
+.calendar-form button{background:#6B705C!important;border-radius:8px!important}
+.calendar-form button:hover:not(:disabled){background:#9aab88!important}
+/* CTA section */
+.cta-section{border-radius:0!important}
+/* Booking button */
+.booking-btn{background:#6B705C!important;border-radius:8px!important;color:#fff!important}
+/* Service areas */
+.info-box h4[style*="6B705C"],.info-box h4[style*="8FA9B5"]{color:#6B705C!important}
+/* Area list items */
+.info-box ul li{color:rgba(255,255,255,.72)!important}
+/* Form select dropdown */
+.contact-page-section select{color:#fff!important}
+.contact-page-section select option{background:#030e1f;color:#fff}
+</style>
 
 <!-- page-title -->
 <section class="page-title centred">

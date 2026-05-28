@@ -1,7 +1,7 @@
 /* ================================================================
    Titus Tuitoek Buyers Agent — Custom CSS v4
    Design inspired by Mason Rhys International
-   Brand accent : #8FA9B5 (steel-blue)
+   Brand accent : #6B705C (steel-blue)
    Font         : Quicksand
    ================================================================ */
 
@@ -11,11 +11,11 @@
   --dm:     #0a1628;
   --dr:     #0c1f38;
   --dc:     #0f2240;
-  --brand:  #8FA9B5;
-  --brand-l:#b8cdd6;
-  --brand-d:#6d8a98;
-  --brand-bg:rgba(143,169,181,.12);
-  --brand-border:rgba(143,169,181,.22);
+  --brand:  #6B705C;
+  --brand-l:#9aab88;
+  --brand-d:#4a4f3e;
+  --brand-bg:rgba(107,112,92,.12);
+  --brand-border:rgba(107,112,92,.22);
   --w:   #fff;
   --wd:  rgba(255,255,255,.68);
   --br:  rgba(255,255,255,.09);
@@ -105,7 +105,7 @@ a{text-decoration:none}
   border:none;cursor:pointer;transition:var(--ease);
   text-decoration:none!important;
 }
-.btn-primary:hover{background:var(--brand-l);transform:translateY(-2px);box-shadow:0 8px 24px rgba(143,169,181,.4)}
+.btn-primary:hover{background:var(--brand-l);transform:translateY(-2px);box-shadow:0 8px 24px rgba(107,112,92,.4)}
 .btn-outline{
   display:inline-flex;align-items:center;gap:9px;
   padding:13px 30px;background:transparent;
@@ -264,7 +264,7 @@ a{text-decoration:none}
   cursor:pointer;transition:border-color .2s;
 }
 .service-row:last-child{border-bottom:1px solid var(--br)}
-.service-row:hover{border-color:rgba(143,169,181,.3)}
+.service-row:hover{border-color:rgba(107,112,92,.3)}
 .service-header{
   display:flex;align-items:center;padding:24px 0;gap:24px;
   -webkit-user-select:none;user-select:none;
@@ -326,10 +326,10 @@ a{text-decoration:none}
   padding:48px 36px;border:1px solid var(--br);
   position:relative;transition:var(--ease);
 }
-.process-card:hover{border-color:var(--brand-border);background:rgba(143,169,181,.05)}
+.process-card:hover{border-color:var(--brand-border);background:rgba(107,112,92,.05)}
 .process-num{
   font-size:52px;font-weight:300;line-height:1;
-  color:rgba(143,169,181,.15);margin-bottom:18px;display:block;
+  color:rgba(107,112,92,.15);margin-bottom:18px;display:block;
   font-family:var(--font);
 }
 .process-card h4{
@@ -355,7 +355,7 @@ a{text-decoration:none}
   padding:38px 32px;border:1px solid var(--br);
   transition:var(--ease);
 }
-.testimonial-card:hover{border-color:var(--brand-border);background:rgba(143,169,181,.04)}
+.testimonial-card:hover{border-color:var(--brand-border);background:rgba(107,112,92,.04)}
 .t-quote{
   font-size:52px;line-height:1;color:var(--brand);
   font-family:Georgia,serif;opacity:.4;display:block;
@@ -419,7 +419,7 @@ a{text-decoration:none}
 .cta-section::before{
   content:'';position:absolute;
   top:-120px;right:-120px;width:500px;height:500px;border-radius:50%;
-  background:radial-gradient(circle,rgba(143,169,181,.08) 0%,transparent 70%);
+  background:radial-gradient(circle,rgba(107,112,92,.08) 0%,transparent 70%);
   pointer-events:none;
 }
 .cta-inner{
@@ -636,7 +636,7 @@ select.form-field option{background:var(--dn);color:var(--w)}
 }
 .package-card:hover{border-color:var(--brand-border)}
 .pkg-num{
-  font-size:40px;font-weight:300;color:rgba(143,169,181,.15);
+  font-size:40px;font-weight:300;color:rgba(107,112,92,.15);
   margin-bottom:14px;display:block;
 }
 .package-card h4{font-size:20px;font-weight:700;color:var(--w);margin-bottom:20px}
@@ -666,7 +666,7 @@ select.form-field option{background:var(--dn);color:var(--w)}
 .custom-tab{display:none}
 .custom-tab.active{display:block;animation:slideDown .3s ease}
 .info-box{
-  background:rgba(143,169,181,.08);border:1px solid var(--brand-border);
+  background:rgba(107,112,92,.08);border:1px solid var(--brand-border);
   padding:30px;margin-bottom:22px;
 }
 .service-hours{padding:30px;border:1px solid var(--br)}

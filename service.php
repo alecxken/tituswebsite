@@ -1,8 +1,60 @@
 <?php
-$page_title   = 'Titus Tuitoek - Property Buyers Agent Services Perth';
+$page_title   = 'Titus Tuitoek — Property Buyers Agent Services Perth';
 $current_page = 'service';
 include_once 'includes/header.php';
 ?>
+<style>
+/* Service page — dark theme scoped override */
+body{background:#030e1f!important}
+.boxed_wrapper{background:#030e1f!important}
+.page-title .bg-layer{filter:brightness(.25) saturate(.6)}
+.page-title .title-box h2{color:#fff!important;font-family:'Quicksand',sans-serif!important;letter-spacing:.04em}
+/* Why choose us */
+.about-style-three{background:#071c35!important;padding:100px 0}
+.about-style-three .sec-title h2{color:#fff!important}
+.about-style-three .sec-title h2 span{color:#9aab88!important}
+.about-style-three .sec-title .sub-title{color:#6B705C!important}
+.about-style-three .content-box .text p{color:rgba(255,255,255,.72)!important}
+.about-style-three .theme-btn{background:#6B705C!important;color:#fff!important}
+/* Service cards */
+.service-style-two{background:#0d2547!important}
+.service-style-two .sec-title h2{color:#fff!important}
+.service-style-two .sec-title h2 span{color:#9aab88!important}
+.service-style-two .sec-title .sub-title{color:#6B705C!important}
+.service-block-one .inner-box{
+  background:rgba(255,255,255,.04)!important;
+  border:1px solid rgba(107,112,92,.2)!important;
+  border-radius:12px!important;transition:all .25s ease!important;
+}
+.service-block-one .inner-box:hover{
+  background:rgba(107,112,92,.1)!important;
+  border-color:rgba(107,112,92,.4)!important;
+  transform:translateY(-5px)!important;
+  box-shadow:0 16px 40px rgba(0,0,0,.4)!important;
+}
+.service-block-one h4{color:#fff!important}
+.service-block-one p{color:rgba(255,255,255,.65)!important}
+/* Packages */
+.service-section{background:#071c35!important;padding:100px 0}
+.service-section .sec-title h2{color:#fff!important}
+.service-section .sec-title h2 span{color:#9aab88!important}
+.service-section .sec-title .sub-title{color:#6B705C!important}
+.package-inner-box{
+  background:rgba(255,255,255,.04)!important;
+  border:1px solid rgba(107,112,92,.18)!important;
+  border-radius:16px!important;
+  box-shadow:0 8px 32px rgba(0,0,0,.4)!important;
+}
+.package-inner-box h4{color:#fff!important}
+.check-list li{color:rgba(255,255,255,.78)!important}
+.check-list li i{color:#6B705C!important}
+.cta-bottom .theme-btn,.package-inner-box .theme-btn{
+  background:#6B705C!important;color:#fff!important;border-radius:8px!important;
+}
+.cta-bottom .theme-btn:hover,.package-inner-box .theme-btn:hover{
+  background:#9aab88!important;
+}
+</style>
 
 <!-- page-title -->
 <section class="page-title centred">
