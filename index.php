@@ -34,7 +34,7 @@ include_once 'includes/header.php';
 #pg-home{
   --brand:#6B705C;--brand-l:#9aab88;--brand-d:#4a4f3e;
   --gold:#c9a84c;--gold-l:rgba(201,168,76,.18);
-  --n1:#030e1f;--n2:#071c35;--n3:#0d2547;
+  --n1:#1e3208;--n2:#2a4509;--n3:#385c10;
   --g-bg:rgba(255,255,255,.05);--g-bdr:rgba(255,255,255,.09);
   --g-blur:14px;
   --t1:#ffffff;--t2:rgba(255,255,255,.78);--t3:rgba(255,255,255,.48);
@@ -128,17 +128,19 @@ include_once 'includes/header.php';
 #pg-hero .hero-bg-img{
   position:absolute;inset:0;z-index:0;
   background-size:cover;background-position:center;
-  filter:brightness(.38) saturate(.7);
+  filter:brightness(.62) saturate(.92);
   transition:transform 8s ease;
 }
 #pg-hero .single-item:hover .hero-bg-img{transform:scale(1.04)}
+/* Olive-tinted overlay: strong left so text is readable, transparent right so image shows through */
 #pg-hero .hero-gradient{
   position:absolute;inset:0;z-index:1;
   background:linear-gradient(
-    130deg,
-    rgba(3,14,31,.92) 0%,
-    rgba(3,14,31,.65) 55%,
-    rgba(12,28,60,.78) 100%
+    105deg,
+    rgba(30,50,8,.88) 0%,
+    rgba(42,69,9,.62) 38%,
+    rgba(56,92,16,.30) 65%,
+    rgba(56,92,16,.08) 100%
   );
 }
 #pg-hero .hero-content{
@@ -179,7 +181,7 @@ include_once 'includes/header.php';
 /* ── Stats strip (glassmorphism) ── */
 .hero-stats{
   position:relative;z-index:10;
-  background:rgba(3,14,31,.85);
+  background:rgba(30,50,8,.85);
   -webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);
   border-top:1px solid var(--bdr1);
 }
@@ -382,7 +384,7 @@ include_once 'includes/header.php';
 }
 #pg-cta .cta-overlay{
   position:absolute;inset:0;
-  background:linear-gradient(135deg,rgba(3,14,31,.9) 0%,rgba(7,28,53,.8) 100%);
+  background:linear-gradient(135deg,rgba(30,50,8,.9) 0%,rgba(7,28,53,.8) 100%);
 }
 #pg-cta .cta-glow{
   position:absolute;top:-100px;right:-100px;

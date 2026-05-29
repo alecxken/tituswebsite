@@ -5,19 +5,19 @@ include_once 'includes/header.php';
 ?>
 <style>
 /* Service page — dark theme scoped override */
-body{background:#030e1f!important}
-.boxed_wrapper{background:#030e1f!important}
+body{background:#1e3208!important}
+.boxed_wrapper{background:#1e3208!important}
 .page-title .bg-layer{filter:brightness(.25) saturate(.6)}
 .page-title .title-box h2{color:#fff!important;font-family:'Quicksand',sans-serif!important;letter-spacing:.04em}
 /* Why choose us */
-.about-style-three{background:#071c35!important;padding:100px 0}
+.about-style-three{background:#2a4509!important;padding:100px 0}
 .about-style-three .sec-title h2{color:#fff!important}
 .about-style-three .sec-title h2 span{color:#9aab88!important}
 .about-style-three .sec-title .sub-title{color:#6B705C!important}
 .about-style-three .content-box .text p{color:rgba(255,255,255,.72)!important}
 .about-style-three .theme-btn{background:#6B705C!important;color:#fff!important}
 /* Service cards */
-.service-style-two{background:#0d2547!important}
+.service-style-two{background:#385c10!important}
 .service-style-two .sec-title h2{color:#fff!important}
 .service-style-two .sec-title h2 span{color:#9aab88!important}
 .service-style-two .sec-title .sub-title{color:#6B705C!important}
@@ -35,7 +35,7 @@ body{background:#030e1f!important}
 .service-block-one h4{color:#fff!important}
 .service-block-one p{color:rgba(255,255,255,.65)!important}
 /* Packages */
-.service-section{background:#071c35!important;padding:100px 0}
+.service-section{background:#2a4509!important;padding:100px 0}
 .service-section .sec-title h2{color:#fff!important}
 .service-section .sec-title h2 span{color:#9aab88!important}
 .service-section .sec-title .sub-title{color:#6B705C!important}

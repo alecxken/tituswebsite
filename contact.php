@@ -20,13 +20,13 @@ include_once 'includes/header.php';
 ?>
 <style>
 /* Contact page — dark theme scoped override */
-body{background:#030e1f!important}
-.boxed_wrapper{background:#030e1f!important}
+body{background:#1e3208!important}
+.boxed_wrapper{background:#1e3208!important}
 .page-title .bg-layer{filter:brightness(.25) saturate(.6)}
 .page-title .title-box h2{color:#fff!important;font-family:'Quicksand',sans-serif!important}
 .page-title .title-box p{color:rgba(255,255,255,.75)!important}
 /* Contact section */
-.contact-page-section{background:#071c35!important;padding:80px 0}
+.contact-page-section{background:#2a4509!important;padding:80px 0}
 .contact-page-section .sec-title h2{color:#fff!important}
 .contact-page-section .sec-title h2 span{color:#9aab88!important}
 .contact-page-section .sec-title .sub-title{color:#6B705C!important}

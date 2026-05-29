@@ -2,7 +2,7 @@
 <style>
 /* Footer — scoped so it beats template rules */
 #site-footer{
-  --fb:#030e1f;--fb2:#071c35;
+  --fb:#1e3208;--fb2:#2a4509;
   --fg:#6B705C;--fg-l:#9aab88;
   --ft1:#fff;--ft2:rgba(255,255,255,.62);--ft3:rgba(255,255,255,.3);
   --fbr:rgba(255,255,255,.08);

@@ -5,23 +5,23 @@ include_once 'includes/header.php';
 ?>
 <style>
 /* About page — dark theme scoped override */
-body{background:#030e1f!important}
-.boxed_wrapper{background:#030e1f!important}
+body{background:#1e3208!important}
+.boxed_wrapper{background:#1e3208!important}
 .about-hero{background-size:cover;background-position:center}
 .about-hero::before{background:linear-gradient(135deg,rgba(3,14,31,.9) 0%,rgba(3,14,31,.65) 100%)}
 .about-hero h1,.about-hero p{color:#fff!important}
 .about-hero .theme-btn{background:#6B705C!important;color:#fff!important}
-.about-company{background:#071c35!important;padding:100px 0}
+.about-company{background:#2a4509!important;padding:100px 0}
 .about-company .sec-title h2,.about-company .sec-title h2 span,.sec-title h2 span{color:#9aab88!important}
 .about-company .sec-title .sub-title{color:#6B705C!important}
 .about-company .text p,.about-company .text ul li{color:rgba(255,255,255,.75)!important}
 .about-company .image-box::before{background:#6B705C!important}
-.about-values{background:#0d2547!important}
+.about-values{background:#385c10!important}
 .about-values .value-item h4{color:#fff!important}
 .about-values .value-item p{color:rgba(255,255,255,.65)!important}
 .about-values .value-item .icon{background:#6B705C!important;color:#fff!important}
 .about-values .value-item:hover{background:rgba(107,112,92,.12)!important}
-.about-titus{background:#030e1f!important}
+.about-titus{background:#1e3208!important}
 .about-titus .content-column .text p{color:rgba(255,255,255,.72)!important}
 .about-titus .content-column .text p.highlight{border-left:3px solid #6B705C!important;color:#fff!important}
 .about-titus .signature h5{color:#fff!important}
@@ -34,7 +34,7 @@ body{background:#030e1f!important}
 .about-cta p{color:rgba(255,255,255,.75)!important}
 .about-cta .theme-btn{background:#6B705C!important;color:#fff!important}
 /* Approach section */
-.about-company[style]{background:#071c35!important}
+.about-company[style]{background:#2a4509!important}
 .about-company[style] h4,.about-company[style] p{color:#fff!important}
 .about-company[style] p{color:rgba(255,255,255,.7)!important}
 .about-company[style] .sec-title h2 span{color:#9aab88!important}

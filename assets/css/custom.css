@@ -7,10 +7,10 @@
 
 /* ── CSS Variables ───────────────────────────────────────────── */
 :root {
-  --dn:     #030e1f;
-  --dm:     #0a1628;
-  --dr:     #0c1f38;
-  --dc:     #0f2240;
+  --dn:     #1e3208;
+  --dm:     #2a4509;
+  --dr:     #385c10;
+  --dc:     #3d6513;
   --brand:  #6B705C;
   --brand-l:#9aab88;
   --brand-d:#4a4f3e;
@@ -40,7 +40,7 @@ a{text-decoration:none}
   border-bottom:1px solid transparent!important;
 }
 .main-header.fixed-header{
-  background:rgba(3,14,31,.97)!important;
+  background:rgba(30,50,8,.97)!important;
   border-bottom:1px solid var(--br)!important;
   -webkit-backdrop-filter:blur(14px);
   backdrop-filter:blur(14px);
@@ -135,8 +135,8 @@ a{text-decoration:none}
   content:'';position:absolute;inset:0;z-index:1;
   background:linear-gradient(
     135deg,
-    rgba(3,14,31,.88) 0%,
-    rgba(3,14,31,.55) 50%,
+    rgba(30,50,8,.88) 0%,
+    rgba(30,50,8,.55) 50%,
     rgba(12,31,56,.75) 100%
   );
 }
@@ -196,7 +196,7 @@ a{text-decoration:none}
 
 /* ── STATS STRIP ─────────────────────────────────────────────── */
 .stats-strip{
-  background:rgba(3,14,31,.97);
+  background:rgba(30,50,8,.97);
   border-top:1px solid var(--br);
   border-bottom:1px solid var(--br);
   padding:52px 0;
@@ -558,7 +558,7 @@ select.form-field option{background:var(--dn);color:var(--w)}
 }
 .about-hero::before{
   content:'';position:absolute;inset:0;
-  background:linear-gradient(135deg,rgba(3,14,31,.9) 0%,rgba(3,14,31,.6) 100%);
+  background:linear-gradient(135deg,rgba(30,50,8,.9) 0%,rgba(30,50,8,.6) 100%);
   z-index:1;
 }
 .about-hero .content{position:relative;z-index:2;max-width:680px;padding:120px 64px 80px}
