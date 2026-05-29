@@ -116,82 +116,40 @@ a{text-decoration:none}
 }
 .btn-outline:hover{border-color:var(--brand);color:var(--brand)!important}
 
-/* ── HERO CAROUSEL ───────────────────────────────────────────── */
-#hero-section{position:relative;overflow:hidden;min-height:100vh}
-.banner-style-two{min-height:100vh;position:relative}
+/* ── HERO CAROUSEL (original template split: 8-col image + 4-col Titus) ── */
+.banner-style-two{
+  background:var(--dn)!important;
+  padding-top:100px; /* clear fixed nav */
+}
 .banner-style-two .shape{display:none}
 
-/* Override template carousel image to full viewport */
-.banner-style-two .slider-content{height:100vh;position:relative}
-.banner-style-two .slider-content .image-box{
-  position:absolute;inset:0;
+/* Accent colour overrides for carousel text */
+.banner-style-two .content-box h2{
+  font-family:var(--font)!important;color:var(--w)!important;
 }
-.banner-style-two .slider-content .image-box img{
-  width:100%;height:100%;object-fit:cover;object-position:center;
-  filter:brightness(.45) saturate(.8);display:block;
+.banner-style-two .content-box h2 span{color:var(--brand)!important}
+.banner-style-two .content-box .info li{color:var(--wd)!important}
+.banner-style-two .content-box .info li span{color:var(--brand)!important}
+.banner-style-two .content-box .info li i{color:var(--brand)!important}
+/* Titus right column */
+.banner-style-two .image-inner .text{background:rgba(30,50,8,.88)!important}
+.banner-style-two .image-inner .text h6{
+  font-family:var(--font)!important;color:var(--w)!important;
+  letter-spacing:.12em;
 }
-/* Dark gradient overlay on carousel */
-.banner-style-two .slider-content::before{
-  content:'';position:absolute;inset:0;z-index:1;
-  background:linear-gradient(
-    135deg,
-    rgba(30,50,8,.88) 0%,
-    rgba(30,50,8,.55) 50%,
-    rgba(12,31,56,.75) 100%
-  );
-}
-/* Carousel content */
-.banner-style-two .single-item-carousel{height:100vh;position:relative}
-.banner-style-two .single-item{position:relative;height:100vh;display:flex!important;align-items:center}
-.banner-style-two .content-box{
-  position:relative;z-index:2;max-width:780px;
-  padding:0 64px;padding-top:100px;
-}
-.banner-style-two .content-box .icon-box{display:none}
-/* hero badge line */
-.hero-eyebrow{
-  display:inline-flex;align-items:center;gap:10px;
-  font-size:10px;font-weight:700;letter-spacing:.35em;
-  text-transform:uppercase;color:var(--brand);margin-bottom:28px;
-}
-.hero-eyebrow::before,.hero-eyebrow::after{
-  content:'';display:block;width:26px;height:1px;
-  background:var(--brand);opacity:.6;
-}
-.banner-style-two h2{
-  font-size:clamp(44px,7vw,88px)!important;
-  font-weight:800!important;line-height:.97!important;
-  letter-spacing:.02em!important;text-transform:uppercase!important;
-  color:var(--w)!important;margin-bottom:20px!important;
-}
-.banner-style-two h2 span{
-  color:var(--brand)!important;
-  font-style:italic;font-weight:300!important;
-}
-.banner-style-two .info{
-  display:flex;gap:28px;margin-bottom:36px!important;
-  list-style:none;padding:0;
-}
-.banner-style-two .info li{
-  font-size:12px;font-weight:600;letter-spacing:.08em;
-  text-transform:uppercase;color:var(--wd);
-  display:flex;align-items:center;gap:7px;
-}
-.banner-style-two .info li i{color:var(--brand);font-size:14px}
-.banner-style-two .info li span{color:var(--brand)}
-/* hero CTA buttons */
-.hero-cta-group{display:flex;gap:14px;flex-wrap:wrap}
-/* hide titus photo column in hero */
-.banner-style-two .image-column{display:none!important}
-.banner-style-two .col-lg-8{width:100%!important;max-width:100%!important;flex:0 0 100%!important}
-
-/* Owl nav dots for carousel */
+.banner-style-two .image-inner .text p{color:var(--wd)!important;font-family:var(--font)!important}
+/* Owl nav */
 .banner-style-two .owl-nav button{
-  background:transparent!important;border:1px solid var(--brand-border)!important;
+  background:transparent!important;
+  border:1px solid var(--brand-border)!important;
   color:var(--brand)!important;transition:var(--ease)!important;
 }
 .banner-style-two .owl-nav button:hover{
   background:var(--brand)!important;color:var(--dn)!important;
+}
+.banner-style-two .owl-dots .owl-dot.active span,
+.banner-style-two .owl-dots .owl-dot span:hover{
+  background:var(--brand)!important;border-color:var(--brand)!important;
 }
 
 /* ── STATS STRIP ─────────────────────────────────────────────── */
