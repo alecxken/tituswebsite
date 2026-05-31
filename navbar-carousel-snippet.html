@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Navbar + Split Carousel — Copy-Paste Snippet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   DESIGN TOKENS — change these to rebrand instantly
+   ============================================================ */
+:root {
+  /* Brand */
+  --brand:      #6B705C;   /* olive/army green accent */
+  --brand-l:    #9aab88;   /* lighter olive (hover) */
+  --brand-d:    #4a4f3e;   /* darker olive */
+
+  /* Backgrounds */
+  --bg-dark:    #1e3208;   /* deepest — body, hero sides */
+  --bg-mid:     #385c10;   /* mid — original #385c10 */
+  --bg-card:    rgba(0,0,0,.22);
+
+  /* Text */
+  --text-1:  #ffffff;
+  --text-2:  rgba(255,255,255,.78);
+  --text-3:  rgba(255,255,255,.46);
+
+  /* Borders */
+  --border:     rgba(255,255,255,.10);
+  --border-br:  rgba(107,112,92,.28);
+
+  /* Shadows */
+  --shadow:  0 8px 32px rgba(0,0,0,.40);
+
+  /* Transitions */
+  --ease: all .28s cubic-bezier(.4,0,.2,1);
+
+  /* Font */
+  --font: 'Quicksand', system-ui, sans-serif;
+}
+
+/* ============================================================
+   GLOBAL RESET
+   ============================================================ */
+*,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font);
+  background: var(--bg-dark);
+  color: var(--text-1);
+  overflow-x: hidden;
+}
+img { display: block; max-width: 100%; }
+a { text-decoration: none; color: inherit; }
+
+/* ============================================================
+   ██████████  NAVBAR  ██████████
+   ============================================================ */
+
+.site-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 9000;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  /* transparent by default — JS adds .scrolled */
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  transition: background .35s ease, border-color .35s ease,
+              box-shadow .35s ease;
+}
+
+/* Nav becomes solid when user scrolls */
+.site-nav.scrolled {
+  background: rgba(30, 50, 8, 0.97);
+  border-bottom-color: var(--border);
+  box-shadow: 0 4px 24px rgba(0,0,0,.35);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+}
+
+/* ── Inner layout ── */
+.nav-inner {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+}
+
+/* ── Logo ── */
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+.nav-logo img {
+  height: 42px;
+  width: auto;
+}
+/* Text logo fallback (if no image) */
+.nav-logo-text {
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: .04em;
+  color: var(--text-1);
+  line-height: 1.1;
+}
+.nav-logo-text span { color: var(--brand); }
+
+/* ── Links ── */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-2);
+  transition: color .2s ease;
+  position: relative;
+  padding-bottom: 3px;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 0; height: 2px;
+  background: var(--brand);
+  transition: width .25s ease;
+  border-radius: 2px;
+}
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--brand);
+}
+.nav-links a:hover::after,
+.nav-links a.active::after {
+  width: 100%;
+}
+
+/* ── CTA button ── */
+.nav-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 24px;
+  background: var(--brand);
+  color: var(--bg-dark) !important;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: var(--ease);
+  flex-shrink: 0;
+}
+.nav-cta:hover {
+  background: var(--brand-l);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(107,112,92,.45);
+}
+
+/* ── Mobile hamburger ── */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 6px;
+  background: none;
+  border: none;
+  flex-shrink: 0;
+}
+.nav-hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--text-1);
+  border-radius: 2px;
+  transition: var(--ease);
+}
+.nav-hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.nav-hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+
+/* ── Mobile drawer ── */
+.nav-drawer {
+  position: fixed;
+  top: 72px; left: 0; right: 0;
+  background: rgba(30,50,8,.98);
+  border-top: 1px solid var(--border);
+  padding: 24px 48px 32px;
+  transform: translateY(-110%);
+  opacity: 0;
+  transition: transform .35s ease, opacity .35s ease;
+  z-index: 8999;
+}
+.nav-drawer.open {
+  transform: translateY(0);
+  opacity: 1;
+}
+.nav-drawer ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.nav-drawer ul a {
+  display: block;
+  padding: 12px 0;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--text-2);
+  border-bottom: 1px solid var(--border);
+  transition: color .2s ease;
+}
+.nav-drawer ul a:hover { color: var(--brand); }
+.nav-drawer .drawer-cta {
+  display: inline-flex;
+  margin-top: 20px;
+  padding: 13px 28px;
+  background: var(--brand);
+  color: var(--bg-dark) !important;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  border-radius: 8px;
+  transition: var(--ease);
+}
+.nav-drawer .drawer-cta:hover { background: var(--brand-l); }
+
+/* ── Responsive breakpoint ── */
+@media (max-width: 900px) {
+  .nav-links, .nav-cta { display: none; }
+  .nav-hamburger { display: flex; }
+  .nav-inner { padding: 0 24px; }
+  .nav-drawer { padding: 24px 24px 32px; }
+}
+
+
+/* ============================================================
+   ██████████  SPLIT HERO CAROUSEL  ██████████
+   ============================================================ */
+
+.hero {
+  display: grid;
+  grid-template-columns: 1fr auto;   /* slider left, agent right */
+  background: var(--bg-dark);
+  margin-top: 72px;                  /* clear fixed nav */
+  overflow: hidden;
+}
+
+/* ── LEFT: image slider ── */
+.hero-slider {
+  position: relative;
+  overflow: hidden;
+  /* aspect ratio keeps it proportional — adjust to taste */
+  height: calc(100vh - 72px);
+  min-height: 480px;
+  max-height: 700px;
+}
+
+/* Slides container */
+.hero-slides {
+  display: flex;
+  height: 100%;
+  transition: transform .70s cubic-bezier(.4,0,.2,1);
+}
+
+/* Single slide */
+.hero-slide {
+  position: relative;
+  flex: 0 0 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.hero-slide-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  /* 62% brightness so image is clearly visible */
+  filter: brightness(.62) saturate(.88);
+  transition: transform 8s ease;
+}
+/* Subtle zoom on active slide */
+.hero-slide.active .hero-slide-bg {
+  transform: scale(1.04);
+}
+/* Directional gradient: strong left (text) → transparent right (image) */
+.hero-slide::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    105deg,
+    rgba(30,50,8,.88)   0%,
+    rgba(42,69,9,.60)  38%,
+    rgba(56,92,16,.28) 65%,
+    rgba(56,92,16,.08) 100%
+  );
+}
+
+/* Slide content (text) */
+.hero-slide-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  padding: 40px 48px;
+  /* fade-in content only when slide is active */
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity .5s ease .2s, transform .5s ease .2s;
+}
+.hero-slide.active .hero-slide-content {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hero-slide-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  color: var(--brand);
+  margin-bottom: 12px;
+}
+.hero-slide-eyebrow::before {
+  content: '';
+  display: block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--brand);
+  animation: pulse-dot 2.2s infinite;
+}
+@keyframes pulse-dot {
+  0%,100% { opacity:1; transform:scale(1); }
+  50%      { opacity:.35; transform:scale(1.6); }
+}
+
+.hero-slide-title {
+  font-size: clamp(26px, 4.5vw, 54px);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: .015em;
+  text-transform: uppercase;
+  color: var(--text-1);
+  margin-bottom: 18px;
+}
+.hero-slide-title span { color: var(--brand); }
+
+.hero-slide-meta {
+  display: flex;
+  gap: 22px;
+  flex-wrap: wrap;
+}
+.hero-slide-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--text-2);
+}
+.hero-slide-meta-item svg {
+  width: 13px;
+  height: 13px;
+  stroke: var(--brand);
+  fill: none;
+  stroke-width: 2;
+  flex-shrink: 0;
+}
+.hero-slide-meta-item strong { color: var(--brand); }
+
+/* ── Carousel navigation arrows ── */
+.hero-nav {
+  position: absolute;
+  bottom: 40px;
+  right: 24px;
+  z-index: 3;
+  display: flex;
+  gap: 8px;
+}
+.hero-nav-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(107,112,92,.45);
+  background: rgba(30,50,8,.6);
+  color: var(--text-1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--ease);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+.hero-nav-btn svg {
+  width: 16px;
+  height: 16px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.hero-nav-btn:hover {
+  background: var(--brand);
+  border-color: var(--brand);
+  color: var(--bg-dark);
+}
+
+/* ── Carousel dots ── */
+.hero-dots {
+  position: absolute;
+  bottom: 48px;
+  left: 48px;
+  z-index: 3;
+  display: flex;
+  gap: 8px;
+}
+.hero-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.3);
+  cursor: pointer;
+  transition: var(--ease);
+  border: none;
+}
+.hero-dot.active {
+  background: var(--brand);
+  transform: scale(1.35);
+}
+
+/* ── RIGHT: agent column ── */
+.hero-agent {
+  width: 320px;
+  flex-shrink: 0;
+  position: relative;
+  background: var(--bg-dark);
+  overflow: hidden;
+}
+.hero-agent img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+}
+/* Text badge at bottom of agent column */
+.hero-agent-label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 22px 24px;
+  background: rgba(30,50,8,.90);
+  border-top: 1px solid var(--border);
+}
+.hero-agent-label h6 {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--text-1);
+  margin-bottom: 5px;
+}
+.hero-agent-label p {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--text-2);
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr auto;
+    margin-top: 72px;
+  }
+  .hero-slider {
+    height: 55vw;
+    min-height: 320px;
+    max-height: 480px;
+  }
+  .hero-slide-content { padding: 24px 28px; }
+  .hero-agent {
+    width: 100%;
+    height: 240px;
+  }
+}
+@media (max-width: 540px) {
+  .hero-slide-title { font-size: clamp(22px,6vw,32px); }
+  .hero-dots, .hero-nav { bottom: 16px; }
+  .hero-dots { left: 24px; }
+  .hero-nav { right: 16px; }
+  .hero-slide-content { padding: 16px 20px; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ============================================================
+     NAVBAR
+     ============================================================ -->
+<nav class="site-nav" id="siteNav" aria-label="Main navigation">
+  <div class="nav-inner">
+
+    <!-- Logo — swap <img> or use text logo -->
+    <a href="/" class="nav-logo" aria-label="Home">
+      <!-- Option A: Image logo -->
+      <!-- <img src="your-logo.png" alt="Your Brand"> -->
+      <!-- Option B: Text logo (uncomment and remove img) -->
+      <span class="nav-logo-text">YOUR<span>BRAND</span></span>
+    </a>
+
+    <!-- Desktop links -->
+    <ul class="nav-links" role="list">
+      <li><a href="#" class="active">Home</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Services</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+
+    <!-- Desktop CTA button -->
+    <a href="#" class="nav-cta">
+      Book a Call
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2.5"
+           stroke-linecap="round" stroke-linejoin="round">
+        <path d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+      </svg>
+    </a>
+
+    <!-- Mobile hamburger -->
+    <button class="nav-hamburger" id="navHamburger"
+            aria-label="Toggle mobile menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+  </div>
+</nav>
+
+<!-- Mobile drawer -->
+<div class="nav-drawer" id="navDrawer" aria-hidden="true">
+  <ul role="list">
+    <li><a href="#">Home</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Services</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+  <a href="#" class="drawer-cta">Book a Call</a>
+</div>
+
+
+<!-- ============================================================
+     SPLIT HERO CAROUSEL
+     ============================================================ -->
+<section class="hero" aria-label="Hero">
+
+  <!-- LEFT: Image slider -->
+  <div class="hero-slider" aria-live="polite">
+
+    <div class="hero-slides" id="heroSlides">
+
+      <!-- ─── SLIDE 1 — swap background-image URL ─── -->
+      <div class="hero-slide active" aria-label="Slide 1 of 2">
+        <div class="hero-slide-bg"
+             style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1400&q=80');">
+        </div>
+
+        <div class="hero-slide-content">
+          <div class="hero-slide-eyebrow">Perth's Trusted Buyers Advocate</div>
+
+          <h1 class="hero-slide-title">
+            Looking To Buy<br>
+            <span>In Perth?</span>
+          </h1>
+
+          <div class="hero-slide-meta">
+            <div class="hero-slide-meta-item">
+              <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/>
+                <circle cx="12" cy="10" r="3"/>
+              </svg>
+              PERTH, <strong>Western Australia</strong>
+            </div>
+            <div class="hero-slide-meta-item">
+              <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+              </svg>
+              Local Expertise
+            </div>
+          </div>
+        </div>
+      </div><!-- /slide 1 -->
+
+      <!-- ─── SLIDE 2 — swap background-image URL ─── -->
+      <div class="hero-slide" aria-label="Slide 2 of 2">
+        <div class="hero-slide-bg"
+             style="background-image: url('https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1400&q=80');">
+        </div>
+
+        <div class="hero-slide-content">
+          <div class="hero-slide-eyebrow">Average $45K+ Client Savings</div>
+
+          <h1 class="hero-slide-title">
+            Your Local<br>
+            <span>Buyers Advocates</span>
+          </h1>
+
+          <div class="hero-slide-meta">
+            <div class="hero-slide-meta-item">
+              <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/>
+                <circle cx="12" cy="10" r="3"/>
+              </svg>
+              PERTH, <strong>Western Australia</strong>
+            </div>
+            <div class="hero-slide-meta-item">
+              <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
+                <polyline points="22 4 12 14.01 9 11.01"/>
+              </svg>
+              Market Knowledge
+            </div>
+          </div>
+        </div>
+      </div><!-- /slide 2 -->
+
+    </div><!-- /.hero-slides -->
+
+    <!-- Dot indicators -->
+    <div class="hero-dots" role="tablist" aria-label="Slide indicators">
+      <button class="hero-dot active" role="tab" aria-selected="true"
+              aria-label="Go to slide 1" data-slide="0"></button>
+      <button class="hero-dot" role="tab" aria-selected="false"
+              aria-label="Go to slide 2" data-slide="1"></button>
+    </div>
+
+    <!-- Prev / Next arrows -->
+    <div class="hero-nav" aria-label="Carousel controls">
+      <button class="hero-nav-btn" id="heroPrev" aria-label="Previous slide">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <button class="hero-nav-btn" id="heroNext" aria-label="Next slide">
+        <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+    </div>
+
+  </div><!-- /.hero-slider -->
+
+  <!-- RIGHT: Agent / person photo column -->
+  <div class="hero-agent">
+    <!--
+      Replace src with your agent photo.
+      Recommended: tall portrait, min 600×800px, object-position: top center
+    -->
+    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&q=80"
+         alt="Your Agent Name — Title">
+    <div class="hero-agent-label">
+      <h6>Expert Guidance</h6>
+      <p>Making property buying a breeze</p>
+    </div>
+  </div>
+
+</section><!-- /.hero -->
+
+
+<!-- ============================================================
+     JAVASCRIPT — Navbar scroll + Carousel
+     ============================================================ -->
+<script>
+/* ── NAV: transparent → solid on scroll ── */
+(function () {
+  var nav  = document.getElementById('siteNav');
+  var ham  = document.getElementById('navHamburger');
+  var drw  = document.getElementById('navDrawer');
+  var open = false;
+
+  window.addEventListener('scroll', function () {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  }, { passive: true });
+
+  function toggleDrawer(state) {
+    open = (state !== undefined) ? state : !open;
+    ham.classList.toggle('open', open);
+    drw.classList.toggle('open', open);
+    ham.setAttribute('aria-expanded', open);
+    drw.setAttribute('aria-hidden', !open);
+  }
+
+  ham.addEventListener('click', function () { toggleDrawer(); });
+
+  /* Close drawer when a link is clicked */
+  drw.querySelectorAll('a').forEach(function (a) {
+    a.addEventListener('click', function () { toggleDrawer(false); });
+  });
+}());
+
+
+/* ── CAROUSEL: vanilla JS, auto-play, arrows, dots ── */
+(function () {
+  var track  = document.getElementById('heroSlides');
+  var slides = track.querySelectorAll('.hero-slide');
+  var dots   = document.querySelectorAll('.hero-dot');
+  var prev   = document.getElementById('heroPrev');
+  var next   = document.getElementById('heroNext');
+  var total  = slides.length;
+  var current = 0;
+  var timer;
+
+  function goTo(index) {
+    /* Remove active from current */
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    dots[current].setAttribute('aria-selected', 'false');
+
+    /* Clamp index */
+    current = (index + total) % total;
+
+    /* Slide the track */
+    track.style.transform = 'translateX(-' + (current * 100) + '%)';
+
+    /* Activate new */
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
+    dots[current].setAttribute('aria-selected', 'true');
+  }
+
+  function startTimer() {
+    clearInterval(timer);
+    timer = setInterval(function () { goTo(current + 1); }, 5000);
+  }
+
+  /* Arrow buttons */
+  next.addEventListener('click', function () { goTo(current + 1); startTimer(); });
+  prev.addEventListener('click', function () { goTo(current - 1); startTimer(); });
+
+  /* Dot buttons */
+  dots.forEach(function (dot, i) {
+    dot.addEventListener('click', function () { goTo(i); startTimer(); });
+  });
+
+  /* Keyboard left/right when slider is focused */
+  track.parentElement.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowRight') { goTo(current + 1); startTimer(); }
+    if (e.key === 'ArrowLeft')  { goTo(current - 1); startTimer(); }
+  });
+
+  /* Touch / swipe support */
+  var touchStartX = 0;
+  track.addEventListener('touchstart', function (e) {
+    touchStartX = e.changedTouches[0].clientX;
+  }, { passive: true });
+  track.addEventListener('touchend', function (e) {
+    var diff = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) {
+      goTo(diff > 0 ? current + 1 : current - 1);
+      startTimer();
+    }
+  });
+
+  /* Pause on hover */
+  track.parentElement.addEventListener('mouseenter', function () { clearInterval(timer); });
+  track.parentElement.addEventListener('mouseleave', startTimer);
+
+  /* Kick off */
+  startTimer();
+}());
+</script>
+
+</body>
+</html>
